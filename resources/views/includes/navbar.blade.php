@@ -18,7 +18,7 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Users
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" >
             <li><a class="dropdown-item" href="/users">List</a></li>
             <li><a class="dropdown-item" href="/users/create">New user</a></li>
             <li><hr class="dropdown-divider"></li>
