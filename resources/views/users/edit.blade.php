@@ -2,7 +2,7 @@
 @section('title', 'edit')
 @section('content')
 <div class="contaainer">
-<form action="{{route('users.update',['id'=>$user['id']])}}" method="post">
+<form action="{{route('users.update',['id'=>$users['id']])}}" method="post">
     @method('PUT')
     @csrf
 <div class="mb-3">

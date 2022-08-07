@@ -77,8 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'Update the specified resource with id'.$id.'
-        in storage.';
+        dd($request->all());
     }
 
     /**
@@ -88,10 +87,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {$users = json_decode(\Illuminate\Support\Facades\File::get(storage_path('users.json')),
-        true);
-        $users=$users[$id-1];
-        return view('users.destroy')->with(['users'=>$users ,'id'=>$id]);
-        
+    {
+        return "Remove the specified resource with id $id
+        from storage.";
     }
 }
