@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = json_decode(\Illuminate\Support\Facades\File::get(storage_path('users.json')),
-        true);
+
+        $users=User::all();
         return view('users.index')->with(['users'=>$users]);
     }
 
@@ -36,7 +37,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-       dd($request->all());
+      $udata= $request->only('name','email','password');
+      
+      
+      User::create(
+        ['name' => $udata['name'],
+         'email' =>  $udata['email'],
+         'password' =>  $udata['password']
+         ]
+      );
+      return view('users.index');
     }
 
     /**
@@ -46,11 +56,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $users = json_decode(\Illuminate\Support\Facades\File::get(storage_path('users.json')),
-        true);
-        $users=$users[$id-1];
-        return view('users.show')->with(['users'=>$users,'id'=>$id]);
+    {   $users=User::find($id);
+        return view('users.show')->with(['users'=>$users]);
     }
 
     /**
@@ -61,10 +68,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $users = json_decode(\Illuminate\Support\Facades\File::get(storage_path('users.json')),
-        true);
-        $users=$users[$id-1];
-        return view('users.edit')->with(['users'=>$users ,'id'=>$id]);
+        $users=User::find($id);
+        return view('users.edit')->with(['users'=>$users ]);
         
     }
 
@@ -77,7 +82,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $udata= $request->only('name','email');
+        User::where('id', $id)->update([
+            'name' => $udata['name'],
+         'email' =>  $udata['email'],
+        ]);
+
     }
 
     /**
@@ -88,7 +98,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return "Remove the specified resource with id $id
-        from storage.";
+        User::where('id', $id)->delete();
+        return view('users.index');
     }
 }

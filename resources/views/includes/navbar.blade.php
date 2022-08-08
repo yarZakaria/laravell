@@ -24,6 +24,16 @@
             <li><hr class="dropdown-divider"></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Posts
+          </a>
+          <ul class="dropdown-menu dropdown-primary my-drop-down-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" aria-labelledby="navbarDropdownMenuLink" >
+            <li><a class="dropdown-item" href="/posts">List</a></li>
+            <li><a class="dropdown-item" href="/posts/create">New post</a></li>
+            <li><hr class="dropdown-divider"></li>
+          </ul>
+        </li>
       </form>
     </div>
   </div>
